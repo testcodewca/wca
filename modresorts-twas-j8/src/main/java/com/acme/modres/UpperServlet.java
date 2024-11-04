@@ -14,44 +14,21 @@ import com.ibm.websphere.servlet.response.ResponseUtils;
 @WebServlet("/resorts/upper")
 public class UpperServlet extends HttpServlet {
 
-	public String escapeHTML(String input) {
-	    if (input == null) {
-	        return null;
-	    }
+	private static final long serialVersionUID = 1L;
 
-	    // Replace special characters with HTML entities
-	    String escapedInput = input
-	            .replace("&", "&amp;")
-	            .replace("<", "&lt;")
-	            .replace(">", "&gt;")
-	            .replace("\"", "&quot;")
-	            .replace("'", "&#39;")
-	            .replace("(", "&#40;")
-	            .replace(")", "&#41;")
-	            .replace("+", "&#43;")
-	            .replace("%", "&#37;")
-	            .replace(";", "&#59;");
-
-	    return escapedInput;
-	}
-
-	
-    private static final long serialVersionUID = 1L;
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
-        String originalStr = request.getParameter("input");
-        if (originalStr == null) {
-            originalStr = "";
-        }
-
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		
+		String originalStr = request.getParameter("input");
+		if (originalStr == null) {
+			originalStr = "";
+		}
+		
         String newStr = originalStr.toUpperCase();
-        newStr = escapeHTML(newStr);
-
-        PrintWriter out = response.getWriter();
-        out.print("<br/><b>capitalized input " + newStr + "</b>");
-    }
+        newStr = ResponseUtils.encodeDataString(newStr);
+        
+	    PrintWriter out = response.getWriter();  
+	    out.print("<br/><b>capitalized input " + newStr + "</b>");  
+	}
 }
-

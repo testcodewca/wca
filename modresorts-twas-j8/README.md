@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the WebSphere Application Server version of the ModResorts application. It contains code issues that need to be addressed before migrating the applicaiton successfully to Liberty.
+This is the WebSphere Application Server version of the ModResorts application. It contains code issues that need to be addressed before migrating the applicaiton successfully to Liberty. This project is currently buit on Java 8 version.
 
 
 ## Building
